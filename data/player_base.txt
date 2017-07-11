@@ -1,0 +1,6 @@
+name Arken
+pv 100
+pm 10
+mapId level1
+x 0
+y 0

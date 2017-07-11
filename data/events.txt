@@ -1,0 +1,10 @@
+1 spawn
+2 fight
+3 loadLevel "level2"
+4 loadLevel "level1"
+5 loadLevel "level3"
+6 loadLevel "level4"
+7 loadLevel "level5"
+8 loadLevel "level6"
+9 loadLevel "level7"
+10 messagebox "Bravo!" False 0 0 

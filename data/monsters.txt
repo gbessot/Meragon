@@ -1,0 +1,3 @@
+1 Araignée-géante spider 100 10
+2 Troll troll 50 20
+3 Loup-sauvage wolf 25 25
