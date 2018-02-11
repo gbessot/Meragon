@@ -28,9 +28,9 @@ from random import randrange
 def player_getInfo():
     if(exists("data/player.txt") == False):
         copyfile("data/player_base.txt", "data/player.txt")
-    playerFile = open("data/player.txt", "r")
+    with open("data/player.txt", "r") as playerFile:
+        data = playerFile.readlines()
     playerData = [[],[]]
-    data = playerFile.readlines()
     for i in range(len(data)):
         line = data[i].replace("\n", "").split(" ")
         key = line[0]
@@ -40,11 +40,11 @@ def player_getInfo():
     return playerData
 
 def player_setInfo():
-    playerFile = open("data/player.txt", "w")
-    for i in range(len(playerData[0])):
-        key = playerData[0][i]
-        value = str(playerData[1][i])
-        playerFile.write(key+" "+value+"\n")
+    with open("data/player.txt", "w") as playerFile:
+        for i in range(len(playerData[0])):
+            key = playerData[0][i]
+            value = str(playerData[1][i])
+            playerFile.write(key+" "+value+"\n")
 
 ## Player method ##
 def player_getName():
@@ -137,9 +137,9 @@ def event_fight():
 
         #Select random monster
         monster = []
-        monsterFile = open("data/monsters.txt", "r")
+        with open("data/monsters.txt", "r") as monsterFile:
+            data = monsterFile.readlines()
         monsterData = [[],[]]
-        data = monsterFile.readlines()
         mSelect = randrange(1,len(data)+1)
         for i in range(len(data)):
             line = data[i].replace("\n", "").split(" ")
@@ -305,8 +305,8 @@ def destroyMessagebox(evt):
 
 def createMatrix(levelFile):
     finalMatrix = []
-    file = open(levelFile, "r")
-    matrix = "".join(file.read()).split("-")
+    with open(levelFile, "r") as file:
+        matrix = "".join(file.read()).split("-")
     for i in range(3):
         matrix[i] = "".join(matrix[i]).strip().split("\n")
         for j in range(len(matrix[0])):
@@ -359,9 +359,9 @@ def renderCharacter(respawn):
 
 ## Move functions ##
 def runEvent(eventId):
-    eventFile = open("data/events.txt", "r")
+    with open("data/events.txt", "r") as file:
+        data = eventFile.readlines()
     eventData = [[],[]]
-    data = eventFile.readlines()
     for i in range(len(data)):
         line = data[i].replace("\n", "").split(" ")
         key = line[0]
@@ -428,8 +428,8 @@ def move(evt):
 ##    pygame.mixer.music.play(-1)
 ##    pygame.mixer.music.set_volume(0.1)
 
-levelFile = open("levels/{}.txt".format(player_getMap()), "r")
-matrix = "".join(levelFile.read()).split("-")
+with open("levels/{}.txt".format(player_getMap()), "r") as levelFile:
+    matrix = "".join(levelFile.read()).split("-")
 matrix_y = "".join(matrix[0]).strip().split("\n")
 matrix_x = "".join(matrix_y[0]).strip().split(" ")
 height = len(matrix_y)
